@@ -25,6 +25,8 @@ jobs:
         # static code artifact is created and deployed to github pages via a pre-built action
         - name: Upload static files
           uses: actions/upload-pages-artifact@v4
+          with:
+            path: '.'
 
         - name: Deploy to GitHub Pages
           uses: actions/deploy-pages@v4
