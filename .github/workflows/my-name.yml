@@ -1,12 +1,14 @@
 name: Is used to tell name
 
 on:
- push: 
-   branches: [main]
+  push:
+    branches:
+      - main
 
 jobs:
   say-my-name:
-   runs-on: ubuntu-latest
-   steps:
-     - name: say my name to user 
-       run: echo'my name is tejas'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Say my name to user
+        run: echo "my name is tejas"
