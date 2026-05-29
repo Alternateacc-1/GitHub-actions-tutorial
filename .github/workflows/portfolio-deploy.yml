@@ -1,0 +1,32 @@
+name: Portfolio Deploy
+
+on:
+    push:
+        branches:
+            - main
+
+permissions:
+    pages: write
+    id-token: write
+
+jobs: 
+    deploy:                   # single runner is used to deploy the portfolio
+      runs-on: ubuntu-latest
+      environment:
+        name: github-pages
+        url: ${{ steps.deployment.outputs.page_url }}
+      steps:
+        # get the access to the portfolio code via a pre-built action
+        - name: Checkout code
+          uses: actions/checkout@v4
+
+        # setup github pages via a pre-built action
+        - name: Setup GitHub Pages
+          uses: actions/configure-pages@v4
+
+        # static code artifact is created and deployed to github pages via a pre-built action
+        - name: Upload static files
+          uses: actions/upload-pages-artifact@v4
+
+        - name: Deploy to GitHub Pages
+          uses: actions/deploy-pages@v4
