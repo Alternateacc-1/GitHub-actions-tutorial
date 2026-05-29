@@ -1,9 +1,9 @@
-name : tejas
-location : xyz
-dob : x/y/z
-hobbies :  # make sure to leave 4 spaces when adding multiple things (most common)
-   -manga
-   -manhwa
+name: tejas
+location: xyz
+dob: x/y/z
+hobbies:  # make sure to leave 4 spaces when adding multiple things (most common)
+   - manga
+   - manhwa
 # or we can do this ( inline - sequence)
 tools : [manga,manhwa]
 experience :                       # or we can do hyhen method as well
