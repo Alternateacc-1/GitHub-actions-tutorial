@@ -1,9 +1,7 @@
 name: Portfolio Deploy
 
 on:
-    push:
-        branches:
-            - main
+    workflow_dispatch:  # allows the workflow to be triggered manually from the GitHub UI
 
 permissions:
     pages: write
