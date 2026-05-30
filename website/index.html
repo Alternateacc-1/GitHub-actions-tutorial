@@ -1,88 +1,1259 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tejas Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="css/style.css">
+<title>Portfolio | Data Engineering & MLOps</title>
+
+<meta name="description" content="Portfolio showcasing projects, skills, and interests in Data Engineering, Machine Learning, Cloud Computing, and MLOps.">
+
+<style>
+
+:root{
+    --bg:#050816;
+    --glass:rgba(255,255,255,0.08);
+    --glass-border:rgba(255,255,255,0.12);
+
+    --text:#ffffff;
+    --muted:#bfc7d5;
+
+    --primary:#7c5cff;
+    --secondary:#00d4ff;
+    --pink:#ff4ecd;
+
+    --shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:
+    Inter,
+    Segoe UI,
+    system-ui,
+    sans-serif;
+
+    overflow-x:hidden;
+    min-height:100vh;
+    position:relative;
+}
+
+/* =====================================
+   CURSOR SPOTLIGHT
+===================================== */
+
+.spotlight{
+    position:fixed;
+    width:500px;
+    height:500px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(124,92,255,.18),
+        transparent 70%
+    );
+
+    pointer-events:none;
+
+    transform:translate(-50%,-50%);
+
+    z-index:0;
+}
+
+/* =====================================
+   AURORA BACKGROUND
+===================================== */
+
+.aurora{
+    position:fixed;
+    inset:-20%;
+    z-index:-2;
+
+  filter:blur(60px);
+opacity:.25;
+
+    animation:
+    auroraMove 16s ease-in-out infinite alternate;
+}
+
+.aurora::before,
+.aurora::after{
+    content:"";
+    position:absolute;
+  width:300px;
+  height:300px;
+    border-radius:50%;
+}
+
+.aurora::before{
+    background:#7c5cff;
+    top:10%;
+    left:10%;
+}
+
+.aurora::after{
+    background:#00d4ff;
+    bottom:10%;
+    right:10%;
+}
+
+@keyframes auroraMove{
+
+    0%{
+        transform:
+        translate(-40px,-20px)
+        rotate(0deg);
+    }
+
+    100%{
+        transform:
+        translate(60px,40px)
+        rotate(25deg);
+    }
+}
+
+/* =====================================
+   NOISE OVERLAY
+===================================== */
+
+.noise{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+  opacity:.008;
+
+    background-image:
+    radial-gradient(#fff 1px, transparent 1px);
+
+    background-size:4px 4px;
+}
+
+/* =====================================
+   NAVBAR
+===================================== */
+
+nav{
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:min(1200px,92%);
+
+    z-index:100;
+
+    backdrop-filter:blur(20px);
+
+    background:var(--glass);
+
+    border:1px solid var(--glass-border);
+
+    border-radius:20px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 28px;
+}
+
+.logo{
+    font-weight:800;
+    letter-spacing:2px;
+    font-size:1.05rem;
+}
+
+.nav-links{
+    display:flex;
+    gap:10px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+
+    padding:10px 18px;
+
+    border-radius:12px;
+
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    background:rgba(255,255,255,.08);
+}
+
+/* =====================================
+   HERO
+===================================== */
+
+.hero{
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:120px 5%;
+}
+
+.hero-inner{
+    width:min(1300px,100%);
+
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+
+    gap:60px;
+}
+
+.badge{
+    display:inline-flex;
+
+    gap:10px;
+    align-items:center;
+
+    padding:12px 18px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    margin-bottom:24px;
+}
+
+.badge-dot{
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+    background:#00ff95;
+
+    box-shadow:
+    0 0 15px #00ff95;
+}
+
+.hero h1{
+
+    font-size:
+  clamp(2.5rem,6vw,4.8rem);
+    line-height:.95;
+
+    margin-bottom:24px;
+}
+
+.gradient-text{
+    background:linear-gradient(
+        90deg,
+        #ffffff,
+        #7c5cff,
+        #00d4ff
+    );
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+
+    max-width:700px;
+
+    color:var(--muted);
+
+    line-height:1.9;
+
+    font-size:1.05rem;
+
+    margin-bottom:36px;
+}
+
+.cta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+}
+
+.btn{
+    text-decoration:none;
+
+    padding:15px 26px;
+
+    border-radius:14px;
+
+    font-weight:600;
+
+    transition:.35s;
+}
+
+.btn-primary{
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color:white;
+}
+
+.btn-secondary{
+
+    border:1px solid rgba(255,255,255,.15);
+
+    color:white;
+
+    background:rgba(255,255,255,.05);
+}
+
+.btn:hover{
+    transform:
+    translateY(-5px);
+}
+
+.hero-card-area{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+.card{
+
+    background:var(--glass);
+
+    border:1px solid var(--glass-border);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:24px;
+
+    padding:28px;
+
+    transition:.4s;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+}
+
+.card::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.08),
+        transparent
+    );
+
+    opacity:0;
+
+    transition:.4s;
+}
+
+.card:hover{
+
+    transform:
+    translateY(-10px)
+    scale(1.02);
+}
+
+.card:hover::before{
+    opacity:1;
+}
+
+.card h3{
+    margin-bottom:12px;
+    font-size:1.1rem;
+}
+
+.card p{
+    color:var(--muted);
+    line-height:1.8;
+}
+
+.stat{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.stat-number{
+
+    font-size:2.8rem;
+    font-weight:800;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+}
+
+.stat-label{
+    color:var(--muted);
+    margin-top:8px;
+}
+
+/* =====================================
+   SECTION
+===================================== */
+
+.section{
+
+    width:min(1300px,92%);
+
+    margin:auto;
+
+    padding:120px 0;
+}
+
+.section-title{
+
+    text-align:center;
+
+    font-size:clamp(2rem,4vw,3rem);
+
+    margin-bottom:18px;
+}
+
+.section-subtitle{
+
+    text-align:center;
+
+    color:var(--muted);
+
+    max-width:700px;
+
+    margin:0 auto 70px;
+
+    line-height:1.8;
+}
+
+/* =====================================
+   SKILLS
+===================================== */
+
+.skills-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(170px,1fr));
+
+    gap:20px;
+}
+
+.skill{
+
+    background:var(--glass);
+
+    border:1px solid var(--glass-border);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:20px;
+
+    padding:28px;
+
+    text-align:center;
+
+    transition:.35s;
+}
+
+.skill:hover{
+
+    transform:
+    translateY(-10px);
+
+    border-color:
+    rgba(124,92,255,.6);
+}
+
+.skill-icon{
+
+    font-size:2rem;
+
+    margin-bottom:15px;
+}
+
+.skill-name{
+    font-weight:600;
+}
+
+/* =====================================
+   PROJECTS
+===================================== */
+
+.projects-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
+}
+
+.project{
+
+    background:var(--glass);
+
+    border:1px solid var(--glass-border);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    transition:.4s;
+}
+
+.project:hover{
+
+    transform:
+    translateY(-10px);
+}
+
+.project-top{
+
+    height:170px;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(124,92,255,.5),
+        rgba(0,212,255,.4)
+    );
+
+    position:relative;
+}
+
+.project-top::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle at center,
+        rgba(255,255,255,.15),
+        transparent
+    );
+}
+
+.project-body{
+    padding:28px;
+}
+
+.project-body h3{
+    margin-bottom:14px;
+}
+
+.project-body p{
+
+    color:var(--muted);
+
+    line-height:1.8;
+
+    margin-bottom:18px;
+}
+
+.tech-stack{
+
+    display:flex;
+    flex-wrap:wrap;
+
+    gap:10px;
+}
+
+.tech-stack span{
+
+    padding:8px 12px;
+
+    border-radius:999px;
+
+    background:
+    rgba(255,255,255,.06);
+
+    border:
+    1px solid rgba(255,255,255,.1);
+
+    font-size:.85rem;
+}
+
+/* =====================================
+   TIMELINE
+===================================== */
+
+.timeline{
+
+    max-width:900px;
+
+    margin:auto;
+
+    position:relative;
+}
+
+.timeline::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:0;
+    bottom:0;
+
+    width:2px;
+
+    background:
+    rgba(255,255,255,.12);
+}
+
+.timeline-item{
+
+    width:50%;
+
+    padding:25px;
+}
+
+.timeline-item:nth-child(odd){
+    margin-right:auto;
+}
+
+.timeline-item:nth-child(even){
+    margin-left:auto;
+}
+
+.timeline-card{
+
+    background:var(--glass);
+
+    border:1px solid var(--glass-border);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:20px;
+
+    padding:24px;
+}
+
+.timeline-card h4{
+    margin-bottom:10px;
+}
+
+.timeline-card p{
+    color:var(--muted);
+    line-height:1.8;
+}
+/* =====================================
+   CONTACT
+===================================== */
+
+.contact-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+}
+
+.contact-card{
+
+    background:var(--glass);
+
+    border:1px solid var(--glass-border);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:24px;
+
+    padding:30px;
+
+    text-align:center;
+
+    transition:.35s;
+}
+
+.contact-card:hover{
+
+    transform:
+    translateY(-10px);
+}
+
+.contact-card h3{
+
+    margin-bottom:12px;
+}
+
+.contact-card p{
+
+    color:var(--muted);
+
+    line-height:1.8;
+}
+
+/* =====================================
+   FOOTER
+===================================== */
+
+footer{
+
+    padding:60px 5%;
+
+    text-align:center;
+
+    color:var(--muted);
+
+    border-top:
+    1px solid rgba(255,255,255,.08);
+
+    margin-top:80px;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width:1100px){
+
+    .hero-inner{
+        grid-template-columns:1fr;
+    }
+
+    .hero-card-area{
+        margin-top:30px;
+    }
+
+    .timeline::before{
+        left:20px;
+    }
+
+    .timeline-item{
+        width:100%;
+        padding-left:60px;
+    }
+
+    .timeline-item:nth-child(even),
+    .timeline-item:nth-child(odd){
+        margin-left:0;
+        margin-right:0;
+    }
+}
+
+@media (max-width:768px){
+
+    nav{
+        padding:15px;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        padding-top:140px;
+    }
+
+    .hero-card-area{
+        grid-template-columns:1fr;
+    }
+
+    .projects-grid{
+        grid-template-columns:1fr;
+    }
+
+    .skills-grid{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+}
+
+@media (max-width:500px){
+
+    .skills-grid{
+        grid-template-columns:1fr;
+    }
+
+    .section{
+        padding:90px 0;
+    }
+}
+
+</style>
 </head>
+
 <body>
 
-<nav>
-    <h2>Tejas</h2>
+<div class="spotlight"></div>
+<div class="aurora"></div>
+<div class="noise"></div>
 
-    <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-    </ul>
+<nav>
+
+<div class="logo">
+ENGINEER
+</div>
+
+<div class="nav-links">
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#journey">Journey</a>
+<a href="#contact">Connect</a>
+</div>
+
 </nav>
 
-<header class="hero">
-    <h1>Hi, I'm Tejas</h1>
-    <p>Aspiring Data Engineer | ML Engineer | MLOps Engineer</p>
+<section class="hero">
 
-    <button onclick="showMessage()">
-        Contact Me
-    </button>
-</header>
+<div class="hero-inner">
 
-<section id="about">
-    <h2>About Me</h2>
+<div>
 
-    <p>
-        Passionate about Docker, CI/CD, Kubernetes,
-        Data Engineering and Machine Learning Systems.
-    </p>
+<div class="badge">
+<div class="badge-dot"></div>
+Open To Opportunities
+</div>
+
+<h1>
+
+Building
+
+<span class="gradient-text">
+Scalable
+</span>
+
+Data & ML
+Systems
+
+</h1>
+
+<p>
+
+Computer Engineering Student passionate
+about Data Engineering, Machine Learning,
+Cloud Infrastructure and MLOps.
+
+Focused on building scalable systems,
+automation pipelines and modern
+cloud-native applications.
+
+</p>
+
+<div class="cta">
+
+<a href="#projects" class="btn btn-primary">
+View Projects
+</a>
+
+<a href="#contact" class="btn btn-secondary">
+Connect
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-card-area">
+
+<div class="card stat">
+<div class="stat-number">10+</div>
+<div class="stat-label">
+Projects Built
+</div>
+</div>
+
+<div class="card stat">
+<div class="stat-number">3</div>
+<div class="stat-label">
+Core Domains
+</div>
+</div>
+
+<div class="card">
+<h3>Data Engineering</h3>
+<p>
+Building reliable pipelines,
+processing systems and scalable
+data platforms.
+</p>
+</div>
+
+<div class="card">
+<h3>MLOps</h3>
+<p>
+Deploying and managing machine
+learning systems using cloud and
+DevOps practices.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+<section id="skills" class="section">
+
+<h2 class="section-title">
+Technical Skills
+</h2>
+
+<p class="section-subtitle">
+Technologies and tools used for building modern software,
+cloud-native systems and machine learning solutions.
+</p>
+
+<div class="skills-grid">
+
+<div class="skill">
+<div class="skill-icon">🐍</div>
+<div class="skill-name">Python</div>
+</div>
+
+<div class="skill">
+<div class="skill-icon">🗄️</div>
+<div class="skill-name">SQL</div>
+</div>
+
+<div class="skill">
+<div class="skill-icon">🐳</div>
+<div class="skill-name">Docker</div>
+</div>
+
+<div class="skill">
+<div class="skill-icon">☸️</div>
+<div class="skill-name">Kubernetes</div>
+</div>
+
+<div class="skill">
+<div class="skill-icon">☁️</div>
+<div class="skill-name">Cloud</div>
+</div>
+
+<div class="skill">
+<div class="skill-icon">⚙️</div>
+<div class="skill-name">CI/CD</div>
+</div>
+
+<div class="skill">
+<div class="skill-icon">🐧</div>
+<div class="skill-name">Linux</div>
+</div>
+
+<div class="skill">
+<div class="skill-icon">🤖</div>
+<div class="skill-name">Machine Learning</div>
+</div>
+
+</div>
+
 </section>
 
-<section id="skills">
-    <h2>Skills</h2>
+<section id="projects" class="section">
 
-    <div class="cards">
+<h2 class="section-title">
+Featured Projects
+</h2>
 
-        <div class="card">
-            <h3>Docker</h3>
-            <p>Containerization & deployment.</p>
-        </div>
+<p class="section-subtitle">
+Replace these placeholder projects with your best work.
+Focus on engineering impact and measurable outcomes.
+</p>
 
-        <div class="card">
-            <h3>GitHub Actions</h3>
-            <p>CI/CD automation.</p>
-        </div>
+<div class="projects-grid">
 
-        <div class="card">
-            <h3>Python</h3>
-            <p>Backend & ML development.</p>
-        </div>
+<div class="project">
 
-    </div>
+<div class="project-top"></div>
+
+<div class="project-body">
+
+<h3>Data Pipeline Platform</h3>
+
+<p>
+Built an automated pipeline for ingesting,
+processing and transforming large datasets.
+</p>
+
+<div class="tech-stack">
+<span>Python</span>
+<span>SQL</span>
+<span>Docker</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="project">
+
+<div class="project-top"></div>
+
+<div class="project-body">
+
+<h3>ML Deployment System</h3>
+
+<p>
+Automated model deployment and monitoring
+using modern MLOps practices.
+</p>
+
+<div class="tech-stack">
+<span>ML</span>
+<span>Cloud</span>
+<span>CI/CD</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="project">
+
+<div class="project-top"></div>
+
+<div class="project-body">
+
+<h3>Cloud Infrastructure Lab</h3>
+
+<p>
+Experimented with scalable cloud-native
+architectures and container orchestration.
+</p>
+
+<div class="tech-stack">
+<span>AWS</span>
+<span>Kubernetes</span>
+<span>Linux</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<section id="projects">
-    <h2>Projects</h2>
+<section id="journey" class="section">
 
-    <div class="cards">
+<h2 class="section-title">
+Learning Journey
+</h2>
 
-        <div class="card">
-            <h3>Portfolio Deployment</h3>
-            <p>Hosted with GitHub Pages.</p>
-        </div>
+<p class="section-subtitle">
+Focused on building expertise in Data Engineering,
+Machine Learning and MLOps.
+</p>
 
-        <div class="card">
-            <h3>Dockerized Flask App</h3>
-            <p>Containerized Python backend.</p>
-        </div>
+<div class="timeline">
 
-    </div>
+<div class="timeline-item">
+<div class="timeline-card">
+<h4>Software Foundations</h4>
+<p>
+Programming fundamentals, problem solving,
+algorithms and software engineering concepts.
+</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-card">
+<h4>Cloud & DevOps</h4>
+<p>
+Containers, automation, Linux,
+CI/CD and cloud platforms.
+</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-card">
+<h4>Data Engineering</h4>
+<p>
+Data processing, storage systems,
+ETL workflows and scalability.
+</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-card">
+<h4>MLOps & ML Systems</h4>
+<p>
+Deploying, monitoring and managing
+production machine learning workloads.
+</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section id="contact" class="section">
+
+<h2 class="section-title">
+Let's Connect
+</h2>
+
+<p class="section-subtitle">
+Keep this section privacy-safe.
+Only add public professional profiles.
+</p>
+
+<div class="contact-grid">
+
+<div class="contact-card">
+<h3>GitHub</h3>
+<p>
+Add your GitHub profile URL here.
+</p>
+</div>
+
+<div class="contact-card">
+<h3>LinkedIn</h3>
+<p>
+Add your LinkedIn profile URL here.
+</p>
+</div>
+
+<div class="contact-card">
+<h3>Open Source</h3>
+<p>
+Showcase contributions and engineering work.
+</p>
+</div>
+
+</div>
+
 </section>
 
 <footer>
-    <p>© 2026 Tejas</p>
+
+<p>
+Built with HTML, CSS and JavaScript.
+Privacy-friendly • No Trackers • No Analytics
+</p>
+
 </footer>
 
-<script src="js/script.js"></script>
+<script>
+
+/* Spotlight Effect */
+
+const spotlight =
+document.querySelector(".spotlight");
+
+document.addEventListener(
+"mousemove",
+(e)=>{
+
+spotlight.style.left =
+e.clientX + "px";
+
+spotlight.style.top =
+e.clientY + "px";
+
+});
+
+/* Reveal Animation */
+
+const observer =
+new IntersectionObserver(
+
+(entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.animate(
+
+[
+{
+opacity:0,
+transform:
+"translateY(30px)"
+},
+{
+opacity:1,
+transform:
+"translateY(0)"
+}
+],
+
+{
+duration:700,
+fill:"forwards"
+}
+
+);
+
+}
+
+});
+
+},
+
+{
+threshold:0.15
+}
+
+);
+
+document
+.querySelectorAll(
+".card,.skill,.project,.timeline-card,.contact-card"
+)
+.forEach(el=>{
+
+el.style.opacity="0";
+
+observer.observe(el);
+
+});
+
+</script>
 
 </body>
 </html>
