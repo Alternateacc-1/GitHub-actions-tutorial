@@ -1,0 +1,23 @@
+name: Python-Lint
+
+on:
+    workflow_dispatch:  # allows the workflow to be triggered manually from the GitHub UI
+
+jobs:
+    validate:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v5
+
+            - name: Set up Python 3.8            # setup-python action is used to setup for python 3.8
+              uses: actions/setup-python@v5
+              with:
+                python-version: 3.8
+
+            - name: Install_Dependencies       # install dependencies via pip install
+              working-directory: ./lint-files
+              run: pip install -r requirement.txt
+
+            - name: Lint_Code                   # run the linter via flake8
+              run: flake8 lint-files/app.py     # used without a working directory as the path is provided in the command
