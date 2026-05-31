@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install -r lint-files/requirements.txt
+RUN pip install -r ./lint-files/requirements.txt
 
-CMD ["python", "lint-files/app.py"]
+CMD ["python", "./lint-files/app.py"]
