@@ -1,8 +1,7 @@
 name: Docker-Build-Push
 
 on:
-    push:
-        branches: [main]  # triggers the workflow on push to the main branch
+  workflow_dispatch: # triggers the workflow on push to the main branch
 
 jobs:
     build-and-push:
