@@ -1,7 +1,7 @@
 name: Docker-Build-Push
 
 on:
-  workflow_dispatch: # triggers the workflow on push to the main branch
+    workflow_call:
 
 jobs:
     build-and-push:
@@ -24,6 +24,5 @@ jobs:
                 push: true
                 tags: |                        # image name bhi toh dena padhenga
                     ${{vars.DOCKERHUB_USER}}/github-actions-app:${{github.ref_name}}   
-                    ${{vars.DOCKERHUB_USER}}/github-actions-app:latest
-                    ${{vars.DOCKERHUB_USER}}/github-actions-app:${{github.sha}}
-        
+                 
+                    
