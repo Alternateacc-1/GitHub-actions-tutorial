@@ -1,2 +1,3 @@
 flake8 # Library used to check syntax/best practise for python code
 flask  # required to run the app.py
+bandit # required to check SAST 
