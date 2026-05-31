@@ -1,0 +1,6 @@
+services:
+    
+    flask-app:
+        image: ${DOCKER_USER}/github-actions-app:latest
+        ports:
+            - "80:80"
