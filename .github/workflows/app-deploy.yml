@@ -1,8 +1,11 @@
 name: Flask-app-deploy
 
 on:
-    workflow_dispatch:
-
+    workflow_run:
+        workflows: ["Docker-Build-Push"]
+        types: [completed]
+        branches: 
+            - main
 jobs:
     deploy:
         env:
