@@ -20,6 +20,8 @@ jobs:
             - name: Build & Push Docker
               uses: docker/build-push-action@v6
               with:
+                context: lint-files
+                file: lint-files/Dockerfile # file parameter must point to the docker file
                 push: true
                 tags: |                        # image name bhi toh dena padhenga
                     ${{vars.DOCKERHUB_USER}}/github-actions-app:${{github.ref_name}}   
