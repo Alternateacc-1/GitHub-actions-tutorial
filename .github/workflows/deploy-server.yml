@@ -16,5 +16,5 @@ jobs:
                 key:  ${{secrets.EC2_SSH_PRIVATE_KEY}}    # github karunner is private ko use karke server ke andar jayenga
                 script:
                     echo "Starting deployment"
-                    mkdir devops
+                    mkdir -p devops
                     
