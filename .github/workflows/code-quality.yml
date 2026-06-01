@@ -30,4 +30,5 @@ jobs:
               run: flake8 lint-files/app.py     # used without a working directory as the path is provided in the command
 
             - name: SAST-run
-              run: bandit -r  lint-files/app.py
+              run: bandit -r  lint-files/app.py -ll
+              
