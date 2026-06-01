@@ -12,7 +12,7 @@ jobs:
         strategy:
             fail-fast: false  # allows all the jobs to run even if one of them fails
             matrix:
-                python-version: [3.8, 3.9]  # test against multiple python versions
+                python-version: [3.9, 3.11]  # test against multiple python versions
         steps:
             - name: Checkout code
               uses: actions/checkout@v5
