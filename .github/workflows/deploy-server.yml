@@ -1,0 +1,20 @@
+# This will deploy the safe/secure/ tested app to prod server
+name: Deployment to server
+
+on: 
+    workflow_call:
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest  #yeh  workflow run hamare server pe honga joh server ko ssh karenga
+        steps:
+            - name: SSH to prod server
+              uses: appleboy/ssh-action@v1.0.3
+              with:
+                host: ${{secrets.EC2_SSH_HOST}}
+                username:  ${{secrets.EC2_SSH_USER}}
+                key:  ${{secrets.EC2_SSH_PRIVATE_KEY}}    # github karunner is private ko use karke server ke andar jayenga
+                script:
+                    echo "Starting deployment"
+                    mkdir devops
+                    
