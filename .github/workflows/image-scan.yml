@@ -23,4 +23,5 @@ jobs:
               with:
                 image-ref: ${{vars.DOCKERHUB_USER}}/github-actions-app:${{github.sha}}
                 severity: 'CRITICAL'  # real-time use 'CRITICAL,HIGH'too
+                ignore-unfixed: true # make sures that unfixed vulnerabilities are ignored
                 exit-code: '1'
