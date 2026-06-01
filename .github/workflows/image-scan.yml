@@ -21,7 +21,7 @@ jobs:
             - name: Trivy vulnerability scanner
               uses: aquasecurity/trivy-action@v0.36.0
               with:
-                image-ref: ${{vars.DOCKERHUB_USER}}/github-actions-app:${{github.sha}}
+                image-ref: ${{vars.DOCKERHUB_USER}}/github-actions-app:${{github.sha}}  #konsi image deni hai image-ref is important
                 severity: 'CRITICAL'  # real-time use 'CRITICAL,HIGH'too
                 ignore-unfixed: true # make sures that unfixed vulnerabilities are ignored
                 exit-code: '1'
