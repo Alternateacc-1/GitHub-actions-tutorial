@@ -19,7 +19,7 @@ jobs:
                 key:  ${{secrets.EC2_SSH_PRIVATE_KEY}}    # github ka runner is private ko use karke server ke andar jayenga
                 script: |
                     echo "Installing required packages and folders"
-                    sudo apt-get update && sudo apt-get install docker.io docker-compose-v2 -y
+                    sudo apt-get update && sudo apt-get install docker.io -y docker.io
                     sudo usermod -aG docker $USER && newgrp docker
                     mkdir -p devops
             
@@ -40,8 +40,8 @@ jobs:
                 key:  ${{secrets.EC2_SSH_PRIVATE_KEY}}    # github ka runner is private ko use karke server ke andar jayenga
                 script: |
                     echo "Running app"
-                    export DOCKERHUB_USER= ${{vars.DOCKERHUB_USER}}
-                    export IMAGE_TAG= ${{github.sha}}
+                    export DOCKERHUB_USER=${{vars.DOCKERHUB_USER}}
+                    export IMAGE_TAG=${{github.sha}}
                     echo ${{secrets.DOCKERHUB_TOKEN}} | docker login -u ${{vars.DOCKERHUB_USER}} --password-stdin 
-                    cd ~/devops && docker compose up -d --build --force-recreate --pull always
+                    cd ~/devops/lint-files && docker compose up -d --build --force-recreate --pull always
 
