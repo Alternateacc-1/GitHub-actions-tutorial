@@ -4,8 +4,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  code-quality:
-    uses: ./.github/workflows/code-quality.yml
+  # yeh saare apne code ke related job bhi the voh run ho gaye
+  code-quality:                         
+    uses: ./.github/workflows/code-quality.yml        
 
   secret-scan:
     uses: ./.github/workflows/secret-scan.yml
@@ -15,3 +16,10 @@ jobs:
 
   docker-lint:
     uses: ./.github/workflows/docker-lint.yml
+
+  # abhi build ke related. Build once the security scan is complete on the code
+  build:
+    needs: [code-quality,secret-scan,dependency-scan,docker-lint]
+    uses: ./.github/workflows/docker-build-push.yml
+    secrets: inherit
+ 
