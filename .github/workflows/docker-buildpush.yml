@@ -1,0 +1,28 @@
+name: Docker-Build-Push
+
+on:
+    workflow_dispatch:
+
+jobs:
+    build-and-push:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v5
+
+            - name: Login to DockerHub
+              uses: docker/login-action@v3
+              with: 
+                username: ${{vars.DOCKERHUB_USER}}
+                password: ${{secrets.DOCKERHUB_TOKEN}}
+         
+            - name: Build & Push Docker
+              uses: docker/build-push-action@v6
+              with:
+                context: lint-files
+                file: lint-files/Dockerfile # file parameter must point to the docker file
+                push: true
+                tags: |                        # image name bhi toh dena padhenga
+                    ${{vars.DOCKERHUB_USER}}/github-actions-app:${{github.sha}}   
+                 
+                    
